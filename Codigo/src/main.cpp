@@ -21,3 +21,7 @@ void teste1(void){
   Serial.println("teste1");
 
 }
+
+void teste3(void){
+  Serial.println("alo alo alo")
+}
