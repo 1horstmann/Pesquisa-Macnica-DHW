@@ -18,19 +18,8 @@ void loop() {
 
 
 void teste1(void){
+  Serial.println("oi");
   Serial.println("teste1");
 
 }
 
-void teste3(void){
-  Serial.println("alo alo alo");
-}
-
-void teste3(void){
-  Serial.println("ai aia ia");
-}
-
-void teste3(void){
-  Serial.println("ai aia ia");
-  Serial.println("HELLO MUNDOOOOO lalala");
-}
