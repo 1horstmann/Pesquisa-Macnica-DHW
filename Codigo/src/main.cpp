@@ -23,9 +23,9 @@ void loop(){
   x = analogRead(temperatura);
   y = analogRead(umidade);
 
-  Serial.println(temperatura);
-  Serial.println(umidade);
+  Serial.println(x);
+  Serial.println(y);
 
-  delay(200);
+  // delay(200);
 }
  
