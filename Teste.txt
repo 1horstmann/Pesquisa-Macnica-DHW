@@ -1,4 +1,8 @@
 Olá, uma linha a mais
 
+<<<<<<< HEAD
 
 ALo ALo ALo
+=======
+qualquer coisa
+>>>>>>> 68cbdb69512082adea4ce1778f0cc5f6cac11c60
