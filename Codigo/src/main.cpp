@@ -23,5 +23,10 @@ void teste1(void){
 }
 
 void teste3(void){
-  Serial.println("alo alo alo")
+  Serial.println("alo alo alo");
+}
+
+
+void teste3(void){
+  Serial.println("ai aia iadcfgfdggg i ia");
 }
