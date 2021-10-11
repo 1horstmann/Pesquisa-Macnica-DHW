@@ -30,3 +30,7 @@ void teste3(void){
 void teste3(void){
   Serial.println("ai aia ia");
 }
+
+void teste3(void){
+  Serial.println("ai aia ia");
+}
