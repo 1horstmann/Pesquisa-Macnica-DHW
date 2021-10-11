@@ -17,8 +17,6 @@ void setup() {
     // Inicializa Serial
     Serial.begin(9600);
     
-
-    
     // Define os leds como saída
     pinMode(led_verde, OUTPUT);
     pinMode(led_amarelo, OUTPUT);
