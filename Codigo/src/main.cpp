@@ -9,13 +9,13 @@
 #define umi    2
 
 /* Definindo constantes */
-#define periodo_total_leitura 3000
-#define periodo_sem_leitura 2000
+#define periodo_leitura 3000
 
-static TimerHandle_t t_read = NULL;
+/* Criando as tarefas */
+TaskHandle_t t_readH;
 
 /* Protótipos de funções */
-void leitura_temp(TimerHandle_t t);
+void t_read(void *arg);
 
 void setup(){
 
@@ -26,29 +26,24 @@ void setup(){
   pinMode(temp,INPUT);
   pinMode(umi,INPUT);
 
-  /* Criando as Tarefas de Timers */
-  t_read = xTimerCreate("t_read", pdMS_TO_TICKS(periodo_total_leitura), pdTRUE, 0, leitura_temp);
-
-  /* Inicializando as Tarefas */
-  xTimerStart(t_read, portMAX_DELAY);
+  /* Criando as Tarefas */
+  xTaskCreate(t_read, "t_read", 128, NULL, 1, &t_readH);
 
 }
 
-void loop(){
-
-}
+void loop(){}
 
 /* Função de le a temperatura */
-void leitura_temp(TimerHandle_t t){
-  
-  float l_temp = analogRead(temp)*3.3/4095.0; // Conversão bits para tensão
-  float tempC = l_temp*100.0; // Conversão tensão para temperatura
+void t_read(void *arg){
+  while(1){
+    float l_temp = analogRead(temp)*3.3/4095.0; // Conversão bits para tensão
+    float tempC = l_temp*100.0; // Conversão tensão para temperatura
 
-  Serial.print("Temperatura: ");
-  Serial.print((unsigned)tempC);
-  Serial.println(" °C");
+    Serial.print("Temperatura: ");
+    Serial.print((unsigned)tempC);
+    Serial.println(" °C");
 
-  vTaskDelay(pdMS_TO_TICKS(periodo_sem_leitura));
-
+    vTaskDelay(pdMS_TO_TICKS(periodo_leitura));
+  }
 }
  
