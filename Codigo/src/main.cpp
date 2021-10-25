@@ -1,4 +1,6 @@
 #include <Arduino.h>
+#include <WiFi.h>
+//#include <SPI.h>
 
 /* Definindo os pinos */
 #define temp   4
@@ -12,12 +14,26 @@
 /* Protótipos de funções */
 void t_read(void);
 
-// helooooooooooooooooooooo
+// Definições da redo wifi
+char* nome = "macnica";
+char* senha =  "12345678";
 
 void setup(){
 
   /* Comunicação Serial */
   Serial.begin(115200);
+
+  // Inicialização da rede wifi
+  WiFi.begin(nome, senha);
+
+  // "WiFi.status()" retorna uma constate informando se houve problema de conexão ou não
+  // Se retornar "WL_CONNECTED" é porque conectou
+  while(WiFi.status() != WL_CONNECTED) 
+  {
+    delay(500);
+    Serial.println("Conectando wifi..");
+  }
+  Serial.println("Conectado a rede wifi");
 
   /* Definindo os IO */
   pinMode(temp,INPUT);
