@@ -17,6 +17,7 @@ void t_read(void);
 // Definições da redo wifi
 char* nome = "macnica";
 char* senha =  "12345678";
+//WiFiServer server(80);
 
 void setup(){
 
@@ -27,7 +28,16 @@ void setup(){
   WiFi.begin(nome, senha);
 
   // "WiFi.status()" retorna uma constate informando se houve problema de conexão ou não
-  // Se retornar "WL_CONNECTED" é porque conectou
+  /*
+    O que a função WiFi.status() pode retornar?
+    R:  WL_CONNECTED: está conectado.
+        WL_NO_SSID_AVAIL: quando a rede não for encontrada.
+        WL_CONNECT_FAILED: quando as tentativas de conexão falharem.
+        WL_DISCONNECTED: quando ela estiver desconectada de uma rede.
+        WL_CONNECTION_LOST: quando a conexão for perdida ou interrompida.
+        WL_IDLE_STATUS: quando está ou em processo de tentativas de conexão.
+  */
+
   while(WiFi.status() != WL_CONNECTED) 
   {
     delay(500);
