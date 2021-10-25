@@ -17,7 +17,7 @@ void t_read(void);
 // Definições da redo wifi
 char* nome = "macnica";
 char* senha =  "12345678";
-WiFiServer server(80);
+//WiFiServer server(80);
 
 void setup(){
 
