@@ -1,4 +1,4 @@
-#include <Arduino.h> 
+#include <Arduino.h>
 
 /* Definindo os pinos */
 #define temp   4
@@ -12,7 +12,7 @@
 /* Protótipos de funções */
 void t_read(void);
 
-
+// helooooooooooooooooooooo
 
 void setup(){
 
