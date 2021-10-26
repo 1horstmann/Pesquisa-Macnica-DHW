@@ -2,6 +2,9 @@
 #include <WiFi.h>
 //#include <SPI.h>
 
+// Site com coisas do wifi:
+// https://www.usinainfo.com.br/blog/esp32-wifi-comunicacao-com-a-internet/
+
 /* Definindo os pinos */
 #define temp   4
 #define umi    2
@@ -15,9 +18,9 @@
 void t_read(void);
 
 // Definições da redo wifi
-char* nome = "macnica";
-char* senha =  "12345678";
-//WiFiServer server(80);
+const char* nome = "Mi 9 Lite";
+const char* senha =  "nitz5555";
+WiFiServer server(80);
 
 void setup(){
 
@@ -25,7 +28,7 @@ void setup(){
   Serial.begin(115200);
 
   // Inicialização da rede wifi
-  WiFi.begin(nome, senha);
+  //WiFi.begin(nome, senha);
 
   // "WiFi.status()" retorna uma constate informando se houve problema de conexão ou não
   /*
@@ -38,12 +41,14 @@ void setup(){
         WL_IDLE_STATUS: quando está ou em processo de tentativas de conexão.
   */
 
-  while(WiFi.status() != WL_CONNECTED) 
+  /*while(WiFi.status() != WL_CONNECTED) 
   {
     delay(500);
     Serial.println("Conectando wifi..");
   }
-  Serial.println("Conectado a rede wifi");
+  Serial.println("Conectado a rede wifi");*/
+  WiFi.mode(WIFI_MODE_STA);
+ Serial.println(WiFi.macAddress());
 
   /* Definindo os IO */
   pinMode(temp,INPUT);
@@ -56,7 +61,7 @@ void setup(){
 void loop(){
   
   
-  t_read();
+  //t_read();
 
 }
 
