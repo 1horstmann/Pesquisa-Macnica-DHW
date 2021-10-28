@@ -3,6 +3,7 @@
 
 // Site com coisas do wifi:
 // https://www.usinainfo.com.br/blog/esp32-wifi-comunicacao-com-a-internet/
+// https://www.arduino.cc/en/Reference/WiFi
 
 /* Definindo os pinos */
 #define temp   4
@@ -64,11 +65,13 @@ void setup(){
 }
 
 void loop(){
+  // Cria uma variável 'cliente' e verifica se existe um cliente conectado.
   WiFiClient cliente = servidor.available();
-  if (cliente) {
+
+  if (cliente) { // Entra aqui se tiver um cliente conectado.
     Serial.println("Novo cliente");
     String currentLine = "";
-    while (cliente.connected()) {
+    while (cliente.connected()) { // Fica nesse 'while' até o cliente se desconectar
       if (cliente.available()) {
         char c = cliente.read();
         Serial.write(c);
@@ -82,10 +85,12 @@ void loop(){
             cliente.print("Click <a href=\"/L\">here</a> to turn the LED on pin 2 off.<br>");
             cliente.println();
             break;
-          } else {
+          } 
+          else {
             currentLine = "";
           }
-        } else if (c != '\r') {
+        } 
+        else if (c != '\r') {
           currentLine += c;
         }
         if (currentLine.endsWith("GET /H")) {
@@ -98,9 +103,6 @@ void loop(){
         }
       }
     }
-
-    //cliente.println("Oi");
-    //cliente.println("Tudo bem?");
 
     cliente.stop();
     Serial.println("Client Disconnected.");
