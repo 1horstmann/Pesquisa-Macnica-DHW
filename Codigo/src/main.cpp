@@ -18,13 +18,11 @@
 void t_read(void);
 
 // Definições da redo wifi
-const char* nome = "Mi 9 Lite";
-const char* senha =  "nitz5555";
-WiFiServer server(80);
+const char* nome = "AP_NITZ_2G"; // Aqui coloca o nome da rede que vai utilizar.
+const char* senha =  "nitz1234"; // Aqui coloca a senha.
+WiFiServer servidor(80); // Define a porta que o servidor vai utilizar, 80 é a mais comum.
 
 void setup(){
-
-  
 
   /* Comunicação Serial */
   Serial.begin(115200);
@@ -33,7 +31,7 @@ void setup(){
   Serial.println();
   Serial.print("Conectando-se a ");
   Serial.println(nome);
-  WiFi.begin(nome, senha);
+  WiFi.begin(nome, senha); // Inicia a tentativa de conexão
 
   // "WiFi.status()" retorna uma constate informando se houve problema de conexão ou não
   /*
@@ -52,10 +50,10 @@ void setup(){
     Serial.println("Conectando wifi..");
   }
   Serial.println("Conectado a rede wifi");
-  Serial.println("Endereço de IP: ");
-  Serial.println(WiFi.localIP());
+  Serial.print("Endereço de IP:  ");
+  Serial.println(WiFi.localIP()); // Printa o endereço IP da placa, que iremos acessar em outro dispositivo.
 
-  server.begin();
+  servidor.begin(); // O servidor web é iniciado
 
 
   //WiFi.mode(WIFI_MODE_STA); // Essa função ajusta o modo de operação do chip WiFi da placa
@@ -71,7 +69,7 @@ void setup(){
 }
 
 void loop(){
-  WiFiClient cliente = server.available();
+  WiFiClient cliente = servidor.available();
   if (cliente) {
     Serial.println("Novo cliente");
     String currentLine = "";
