@@ -1,6 +1,5 @@
 #include <Arduino.h>
 #include <WiFi.h>
-//#include <SPI.h>
 
 // Site com coisas do wifi:
 // https://www.usinainfo.com.br/blog/esp32-wifi-comunicacao-com-a-internet/
@@ -13,11 +12,10 @@
 /* Definindo constantes */
 #define periodo_leitura 3000
 
-
 /* Protótipos de funções */
 void t_read(void);
 
-// Definições da redo wifi
+// Definições da rede wifi
 const char* nome = "AP_NITZ_2G"; // Aqui coloca o nome da rede que vai utilizar.
 const char* senha =  "nitz1234"; // Aqui coloca a senha.
 WiFiServer servidor(80); // Define a porta que o servidor vai utilizar, 80 é a mais comum.
@@ -26,6 +24,12 @@ void setup(){
 
   /* Comunicação Serial */
   Serial.begin(115200);
+
+  /* Definindo os IO */
+  pinMode(temp,INPUT);
+  pinMode(umi,INPUT);
+  pinMode(led_temp, OUTPUT);
+  pinMode(2,OUTPUT);
 
   // Inicialização da rede wifi
   Serial.println();
@@ -44,7 +48,7 @@ void setup(){
         WL_IDLE_STATUS: quando está ou em processo de tentativas de conexão.
   */
 
-  while(WiFi.status() != WL_CONNECTED) 
+  while(WiFi.status() != WL_CONNECTED) // Fica nesse 'while' até estar conectado à rede.
   {
     delay(500);
     Serial.println("Conectando wifi..");
@@ -55,17 +59,8 @@ void setup(){
 
   servidor.begin(); // O servidor web é iniciado
 
-
   //WiFi.mode(WIFI_MODE_STA); // Essa função ajusta o modo de operação do chip WiFi da placa
   //Serial.println(WiFi.macAddress()); // Rretorna o endereço MAC de um dispositivo de rede (em hexadecimal) 
-
-  /* Definindo os IO */
-  pinMode(temp,INPUT);
-  pinMode(umi,INPUT);
-  pinMode(led_temp, OUTPUT);
-  pinMode(2,OUTPUT);
-
-  
 }
 
 void loop(){
