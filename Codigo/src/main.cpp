@@ -6,19 +6,21 @@
 // https://www.arduino.cc/en/Reference/WiFi
 
 /* Definindo os pinos */
-#define temp   4
-#define umi    2
-#define led_temp 18 
+#define temp      4
+#define umi       2
+#define led_temp  18
+#define pot       35
 
 /* Definindo constantes */
 #define periodo_leitura 3000
 
 /* Protótipos de funções */
+void wifi(void);
 void t_read(void);
 
 // Definições da rede wifi
-const char* nome = "AP_NITZ_2G"; // Aqui coloca o nome da rede que vai utilizar.
-const char* senha =  "nitz1234"; // Aqui coloca a senha.
+const char* nome = "Mi 9 Lite"; // Aqui coloca o nome da rede que vai utilizar.
+const char* senha =  "nitz5555"; // Aqui coloca a senha.
 WiFiServer servidor(80); // Define a porta que o servidor vai utilizar, 80 é a mais comum.
 
 void setup(){
@@ -30,7 +32,7 @@ void setup(){
   pinMode(temp,INPUT);
   pinMode(umi,INPUT);
   pinMode(led_temp, OUTPUT);
-  pinMode(2,OUTPUT);
+  pinMode(pot,INPUT);
 
   // Inicialização da rede wifi
   Serial.println();
@@ -65,49 +67,8 @@ void setup(){
 }
 
 void loop(){
-  // Cria uma variável 'cliente' e verifica se existe um cliente conectado.
-  WiFiClient cliente = servidor.available();
-
-  if (cliente) { // Entra aqui se tiver um cliente conectado.
-    Serial.println("Novo cliente");
-    String currentLine = "";
-    while (cliente.connected()) { // Fica nesse 'while' até o cliente se desconectar
-      if (cliente.available()) {
-        char c = cliente.read();
-        Serial.write(c);
-        if (c == '\n') {
-          if (currentLine.length() == 0) {
-            cliente.println("HTTP/1.1 200 OK");
-            cliente.println("Content-type:text/html");
-            cliente.println();
-            cliente.print("Click <a href=\"/H\">here</a> to turn the LED on pin 2 on.<br>");
-            cliente.println();
-            cliente.print("Click <a href=\"/L\">here</a> to turn the LED on pin 2 off.<br>");
-            cliente.println();
-            break;
-          } 
-          else {
-            currentLine = "";
-          }
-        } 
-        else if (c != '\r') {
-          currentLine += c;
-        }
-        if (currentLine.endsWith("GET /H")) {
-          digitalWrite(2, HIGH);
-          Serial.println("CLIOCU EM OUTRO");
-        }
-        if (currentLine.endsWith("GET /L")) {
-          digitalWrite(2, LOW);
-          Serial.println("CLIOCU EM UM");
-        }
-      }
-    }
-
-    cliente.stop();
-    Serial.println("Client Disconnected.");
-  }
   
+  wifi();
   //t_read();
 
 }
@@ -123,5 +84,29 @@ void t_read(void){
     Serial.println(" °C");
     digitalWrite(led_temp, !digitalRead(led_temp));
     vTaskDelay(pdMS_TO_TICKS(periodo_leitura));
+}
+
+void wifi(void){
+  // Cria uma variável 'cliente' e verifica se existe um cliente conectado.
+  WiFiClient cliente = servidor.available();
+
+  int controle = 0;
+
+  if (cliente) { // Entra aqui se tiver um cliente conectado.
+    Serial.println("Novo cliente");
+    
+  while (cliente.connected()) { // Fica nesse 'while' até o cliente se desconectar
+    if (cliente.available()) {
+      cliente.println(analogRead(pot)); // Printa coisas que o cliente pode ver por meio do IP
+      Serial.println(analogRead(pot));  
+      delay(500);
+      
+      if (controle){ // Nunca vai entrar aqui do jeito que está, só pra mostrar a função
+        cliente.stop(); // Desconecta o cliente
+        Serial.println("Cliente desconectado");
+      }
+    }    
+  }
+}
 }
 
