@@ -1,5 +1,7 @@
 #include <Arduino.h>
 #include <WiFi.h>
+#include <HTTPClient.h>
+#include <ArduinoJson.h>
 
 // Site com coisas do wifi:
 // https://www.usinainfo.com.br/blog/esp32-wifi-comunicacao-com-a-internet/
@@ -17,11 +19,18 @@
 /* Protótipos de funções */
 void wifi(void);
 void t_read(void);
+void api_test(void);
+void api_test2(void);
 
 // Definições da rede wifi
 const char* nome = "Mi 9 Lite"; // Aqui coloca o nome da rede que vai utilizar.
 const char* senha =  "nitz5555"; // Aqui coloca a senha.
 WiFiServer servidor(80); // Define a porta que o servidor vai utilizar, 80 é a mais comum.
+
+//String for storing server response
+String response = "";
+//JSON document
+DynamicJsonDocument doc(2048);
 
 void setup(){
 
@@ -68,8 +77,9 @@ void setup(){
 
 void loop(){
   
-  wifi();
+  //wifi();
   //t_read();
+  api_test2();
 
 }
 
@@ -108,5 +118,57 @@ void wifi(void){
     }    
   }
 }
+}
+
+void api_test(void){
+  
+  HTTPClient http;
+  //The API URL
+  String request = "https://api.chucknorris.io/jokes/random";
+  //Start the request
+  http.begin(request);
+  //Use HTTP GET request
+  http.GET();
+  //Response from server
+  response = http.getString();
+  //Parse JSON, read error if any
+  DeserializationError error = deserializeJson(doc, response);
+  if(error) {
+     Serial.print(F("deserializeJson() failed: "));
+     Serial.println(error.f_str());
+     return;
+  }
+  //Print parsed value on Serial Monitor
+  Serial.println(doc["value"].as<char*>());
+  //Close connection  
+  http.end();
+  //Wait two seconds for next joke
+  delay(2000);
+}
+
+
+void api_test2(){
+  HTTPClient http;   
+
+   http.begin("http://jsonplaceholder.typicode.com/posts");  //Specify destination for HTTP request
+   http.addHeader("Content-Type", "text/plain");             //Specify content-type header
+
+   int httpResponseCode = http.POST("POSTING from ESP32");   //Send the actual POST request
+
+   if(httpResponseCode>0){
+
+    String response = http.getString();                       //Get the response to the request
+
+    Serial.println(httpResponseCode);   //Print return code
+    Serial.println(response);           //Print request answer
+
+   }else{
+
+    Serial.print("Error on sending POST: ");
+    Serial.println(httpResponseCode);
+
+   }
+
+   http.end();
 }
 
