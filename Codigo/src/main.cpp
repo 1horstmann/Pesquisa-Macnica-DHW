@@ -21,10 +21,12 @@ void wifi(void);
 void t_read(void);
 void api_test(void);
 void api_test2(void);
+void api_test3(void);
+void api_test4(void);
 
 // Definições da rede wifi
-const char* nome = "Mi 9 Lite"; // Aqui coloca o nome da rede que vai utilizar.
-const char* senha =  "nitz5555"; // Aqui coloca a senha.
+const char* nome = "Macnica Dhw"; // Aqui coloca o nome da rede que vai utilizar.
+const char* senha =  "UNFQ201802"; // Aqui coloca a senha.
 WiFiServer servidor(80); // Define a porta que o servidor vai utilizar, 80 é a mais comum.
 
 //String for storing server response
@@ -73,13 +75,18 @@ void setup(){
 
   //WiFi.mode(WIFI_MODE_STA); // Essa função ajusta o modo de operação do chip WiFi da placa
   //Serial.println(WiFi.macAddress()); // Rretorna o endereço MAC de um dispositivo de rede (em hexadecimal) 
+
+  api_test4();
+  //api_test4();
 }
 
 void loop(){
   
   //wifi();
   //t_read();
-  api_test2();
+  //api_test();
+  //api_test2();
+  //api_test3();
 
 }
 
@@ -146,29 +153,4 @@ void api_test(void){
   delay(2000);
 }
 
-
-void api_test2(){
-  HTTPClient http;   
-
-   http.begin("http://jsonplaceholder.typicode.com/posts");  //Specify destination for HTTP request
-   http.addHeader("Content-Type", "text/plain");             //Specify content-type header
-
-   int httpResponseCode = http.POST("POSTING from ESP32");   //Send the actual POST request
-
-   if(httpResponseCode>0){
-
-    String response = http.getString();                       //Get the response to the request
-
-    Serial.println(httpResponseCode);   //Print return code
-    Serial.println(response);           //Print request answer
-
-   }else{
-
-    Serial.print("Error on sending POST: ");
-    Serial.println(httpResponseCode);
-
-   }
-
-   http.end();
-}
 
