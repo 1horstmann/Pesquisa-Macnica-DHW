@@ -3,6 +3,11 @@
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
 
+//String for storing server response
+String response = "";
+//JSON document
+DynamicJsonDocument doc(2048);
+
 
 void api_test(void){
   
