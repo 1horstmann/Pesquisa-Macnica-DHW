@@ -90,67 +90,9 @@ void loop(){
 
 }
 
-/* Função que le a temperatura */
-void t_read(void){
-    float l_temp = analogRead(temp)*3.3/4095.0; // Conversão bits para tensão
-    float tempC = l_temp*100.0; // Conversão tensão para temperatura
 
-    Serial.println(analogRead(temp));
-    Serial.print("Temperatura: ");
-    Serial.print((unsigned)tempC);
-    Serial.println(" °C");
-    digitalWrite(led_temp, !digitalRead(led_temp));
-    vTaskDelay(pdMS_TO_TICKS(periodo_leitura));
-}
 
-void wifi(void){
-  // Cria uma variável 'cliente' e verifica se existe um cliente conectado.
-  WiFiClient cliente = servidor.available();
 
-  int controle = 0;
 
-  if (cliente) { // Entra aqui se tiver um cliente conectado.
-    Serial.println("Novo cliente");
-    
-  while (cliente.connected()) { // Fica nesse 'while' até o cliente se desconectar
-    if (cliente.available()) {
-      cliente.println(analogRead(pot)); // Printa coisas que o cliente pode ver por meio do IP
-      Serial.println(analogRead(pot));  
-      delay(500);
-      
-      if (controle){ // Nunca vai entrar aqui do jeito que está, só pra mostrar a função
-        cliente.stop(); // Desconecta o cliente
-        Serial.println("Cliente desconectado");
-      }
-    }    
-  }
-}
-}
-
-void api_test(void){
-  
-  HTTPClient http;
-  //The API URL
-  String request = "https://api.chucknorris.io/jokes/random";
-  //Start the request
-  http.begin(request);
-  //Use HTTP GET request
-  http.GET();
-  //Response from server
-  response = http.getString();
-  //Parse JSON, read error if any
-  DeserializationError error = deserializeJson(doc, response);
-  if(error) {
-     Serial.print(F("deserializeJson() failed: "));
-     Serial.println(error.f_str());
-     return;
-  }
-  //Print parsed value on Serial Monitor
-  Serial.println(doc["value"].as<char*>());
-  //Close connection  
-  http.end();
-  //Wait two seconds for next joke
-  delay(2000);
-}
 
 
