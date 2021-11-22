@@ -125,3 +125,44 @@ void api_test4(){
   //Close connection  */
   http.end();
 }
+
+
+void post_api(void){
+   const int capacity = JSON_ARRAY_SIZE(2) + 4 * JSON_OBJECT_SIZE(2);
+   StaticJsonDocument<capacity> doc;
+
+   JsonObject location = doc.createNestedObject("location");
+   location["lat"] = 48.748010;
+   location["lon"] = 2.293491;
+
+   JsonArray feeds = doc.createNestedArray("feeds");
+   JsonObject feed1 = feeds.createNestedObject();
+   feed1["key"] = "a1";
+   feed1["value"] = analogRead(A1);
+   JsonObject feed2 = feeds.createNestedObject();
+   feed2["key"] = "a2";
+   feed2["value"] = analogRead(A2);
+
+   serializeJson(doc, input);
+
+   HTTPClient http;
+   http.begin("http://dummy.restapiexample.com/api/v1/create");  //Specify destination for HTTP request
+   http.addHeader("Content-Type", "application/json");             //Specify content-type header
+
+   int httpResponseCode = http.POST(input);
+
+   if(httpResponseCode>0)
+   {
+   String response = http.getString();                       //Get the response to the request
+   Serial.println(httpResponseCode);   //Print return code
+   Serial.println(response);           //Print request answer
+   }
+
+   else
+   {
+    Serial.print("Error on sending POST: ");
+    Serial.println(httpResponseCode);
+   }
+
+   http.end();
+}
