@@ -76,7 +76,7 @@ void setup(){
   //WiFi.mode(WIFI_MODE_STA); // Essa função ajusta o modo de operação do chip WiFi da placa
   //Serial.println(WiFi.macAddress()); // Rretorna o endereço MAC de um dispositivo de rede (em hexadecimal) 
 
-  api_test4();
+  //api_test4();
   //api_test4();
 }
 
