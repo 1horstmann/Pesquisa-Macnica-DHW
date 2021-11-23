@@ -16,12 +16,17 @@ void connecting__wifi(void);
 
 void temperature__read(void);
 
-void api_test(void);
-void api_test2(void);
-void api_test3(void);
-void api_test4(void);
-
 void initializing__hardware(void);
+
+void api_test1();
+void api_test2();
+void api_test3();
+void api_test4();
+
+String makeGETlocation();
+void makePOSTlocation();
+
+
 
 void setup(){
 
@@ -38,7 +43,8 @@ void setup(){
 
 void loop(){
 
-  connecting__wifi();
+  //connecting__wifi();
+  makePOSTlocation();
 
 }
 

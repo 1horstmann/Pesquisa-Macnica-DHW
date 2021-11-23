@@ -14,8 +14,10 @@
 #define pot       35
 
 // Definições da rede wifi
-const char* nome = "Macnica Dhw"; // Aqui coloca o nome da rede que vai utilizar.
-const char* senha =  "UNFQ201802"; // Aqui coloca a senha.
+//const char* nome = "Macnica Dhw"; // Aqui coloca o nome da rede que vai utilizar.
+//const char* senha =  "UNFQ201802"; // Aqui coloca a senha.
+const char* nome = "Mi 9 Lite"; // Aqui coloca o nome da rede que vai utilizar.
+const char* senha =  "nitz5555"; // Aqui coloca a senha.
 WiFiServer servidor(80); // Define a porta que o servidor vai utilizar, 80 é a mais comum.
 
 

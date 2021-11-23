@@ -8,7 +8,7 @@ String response = "";
 //JSON document
 DynamicJsonDocument doc(2048);
 
-
+/*
 void api_test(void){
   
   HTTPClient http;
@@ -122,7 +122,7 @@ void api_test4(){
   }
   //Print parsed value on Serial Monitor
   Serial.println(doc["value"].as<char*>());
-  //Close connection  */
+  //Close connection  
   http.end();
 }
 
@@ -166,3 +166,5 @@ void post_api(void){
 
    http.end();
 }
+
+*/
