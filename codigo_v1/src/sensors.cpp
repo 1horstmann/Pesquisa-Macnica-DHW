@@ -1,9 +1,9 @@
 #include <Arduino.h>
-#include "..\lib\hardware.hpp"
+#include "..\lib\definitions.hpp"
 
 
  
-float SENSORS__TEMPERATURA_READING()
+float SENSORS__TEMPERATURA_READING(void)
 {
     float measure = analogRead(SENSOR_TEMPERATURE);
     measure = measure * 3.3 / 4095.0; // conversão bits para tensão
@@ -13,7 +13,7 @@ float SENSORS__TEMPERATURA_READING()
 }
 
 
-void SENSORS__MOISTURE_READING()
+float SENSORS__MOISTURE_READING(void)
 {
     
 
@@ -22,7 +22,7 @@ void SENSORS__MOISTURE_READING()
 }
 
 
-void SENSORS__ACCELEROMETER_READING()
+float SENSORS__ACCELEROMETER_READING(void)
 {
 
 
