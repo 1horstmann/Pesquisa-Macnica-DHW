@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include <ClosedCube_HDC1080.h>
+#include <Wire.h>
 #include "..\lib\definitions.hpp"
 
 ClosedCube_HDC1080 hdc1080;
