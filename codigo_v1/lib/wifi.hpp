@@ -2,6 +2,7 @@
 #define WIFI
 
 /* Protótipos das funções */
-void WIFI__INIT(void);
+WiFiServer WIFI__DEFINITIONS(void);
+void WIFI__INIT(WiFiServer servidor);
 
 #endif 
