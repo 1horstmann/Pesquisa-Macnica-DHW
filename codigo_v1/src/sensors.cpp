@@ -9,7 +9,7 @@ float SENSORS__TEMPERATURA_READING(void)
     measure = measure * 3.3 / 4095.0; // conversão bits para tensão
     measure = measure * 100; // conversão tensão para temepratura
 
-    return measure
+    return measure;
 }
 
 
