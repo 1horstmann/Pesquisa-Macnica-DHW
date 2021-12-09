@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "..\lib\definitions.hpp"
 
-void init_hardware(void){
+void HARDWARE__INIT(void){
     pinMode(POTENCIOMETER,INPUT);
     pinMode(SENSOR_TEMPERATURE,INPUT);
     pinMode(SENSOR_MOISTURE, OUTPUT);
