@@ -3,6 +3,6 @@
 
 /* Protótipos das funções */
 
-void init_hardware(void);
+void HARDWARE__INIT(void);
 
 #endif
