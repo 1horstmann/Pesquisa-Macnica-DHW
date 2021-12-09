@@ -3,11 +3,7 @@
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
 
-/* Definindo os pinos */
-#define temp      4
-#define umi       2
-#define led_temp  18
-#define pot       35
+#include "../lib/definitions.hpp"
 
 
 /* Protótipos de funções */

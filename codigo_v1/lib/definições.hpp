@@ -1,11 +1,10 @@
-#ifndef DEFINICOES
+#ifndef DEFINITIONS
 
 /* DEFINIÇÕES DOS PINOS */
 
-#define POTENCIOMETRO   3
-#define
-
-
+#define POTENCIOMETER       3
+#define SENSOR_TEMPERATURE  4
+#define SENSOR_MOISTURE     2
 
 
 
