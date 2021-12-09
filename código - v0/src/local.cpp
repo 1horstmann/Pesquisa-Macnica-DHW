@@ -50,21 +50,22 @@ String makeGETlocation()
   return data; 
 }
  
-/*
+/* 
  * Função que envia ao servidor a localização do NodeMCU
  * função realiza um POST request ao servidor no link /location
  * o servidor por sua vez exibe a localização do NodeMCU no Google Maps
  */
+
 void makePOSTlocation()
 {
     
   String location = makeGETlocation(); // guarda o JSON de geolocalização na variável location
   //Serial.println(location);
   Serial.println("\nEnviando geolocalização ao servidor\n");
-  if(!client.connect(rpiHost, 3000))     // aqui conectamos ao servidor
+  if(!client.connect(WiFi.localIP(), 3000))     // aqui conectamos ao servidor
   {
     Serial.print("Could not connect to host: \n");
-    Serial.print(rpiHost);
+    Serial.print(WiFi.localIP());
   }
   else
   {
