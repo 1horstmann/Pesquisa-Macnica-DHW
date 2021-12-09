@@ -1,6 +1,6 @@
 #ifndef LOCAL
 #define LOCAL
 
-// Protótipos das funções
+/* Protótipos das funções */
 
 #endif 

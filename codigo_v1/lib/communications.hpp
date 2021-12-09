@@ -1,6 +1,6 @@
 #ifndef COMMUNICATIONS
 #define COMMUNICATIONS
 
-// Protótipos das funções
+/* Protótipos das funções */
 
 #endif 
