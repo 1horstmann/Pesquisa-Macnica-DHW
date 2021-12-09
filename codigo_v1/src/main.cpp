@@ -11,21 +11,16 @@
 
 void setup(){
 
-  /* Comunicação Serial */
+/* Comunicação Serial */
   Serial.begin(115200);
 
-  initializing__hardware();
+  
 
-  initializing__wifi();
 
-  //api_test4();
-  //api_test4();
 }
 
 void loop(){
 
-  //connecting__wifi();
-  makePOSTlocation();
 
 }
 
