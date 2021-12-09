@@ -3,24 +3,9 @@
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
 
-#include "../lib/definitions.hpp"
+#include "..\lib\hardware.hpp"
 
 
-/* Protótipos de funções */
-void initializing__wifi(void);
-void connecting__wifi(void);
-
-void temperature__read(void);
-
-void initializing__hardware(void);
-
-void api_test1();
-void api_test2();
-void api_test3();
-void api_test4();
-
-String makeGETlocation();
-void makePOSTlocation();
 
 
 
