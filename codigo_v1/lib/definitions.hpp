@@ -7,4 +7,9 @@
 #define SENSOR_MOISTURE     2
 #define SENSOR_ACCELOMETER  2
 
+
+
+
+
+
 #endif
