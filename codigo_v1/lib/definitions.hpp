@@ -1,0 +1,15 @@
+#ifndef DEFINICOES
+
+
+/* DEFINIÇÕES DOS PINOS */
+#define SENSOR_TEMPERATURA   3
+#define SENSOR_UMIDADE  4
+#define SENSOR_ACELEROMETRO 5
+
+
+
+
+
+
+
+#endif
