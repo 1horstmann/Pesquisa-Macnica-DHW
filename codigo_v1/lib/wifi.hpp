@@ -1,6 +1,6 @@
 #ifndef WIFI
 #define WIFI
 
-// Protótipos das funções
+/* Protótipos das funções */
 
 #endif 

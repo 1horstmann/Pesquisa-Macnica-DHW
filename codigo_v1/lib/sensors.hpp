@@ -1,6 +1,6 @@
 #ifndef SENSORS
 #define SENSORS
 
-// Protótipos das funções
+/* Protótipos das funções */
 
 #endif 
