@@ -2,7 +2,7 @@
 #include <ClosedCube_HDC1080.h>
 #include "..\lib\definitions.hpp"
 
-ClosedCube_HDC1080 hdc1080;
+
 
 float SENSORS__TEMPERATURA_READING(void)
 {

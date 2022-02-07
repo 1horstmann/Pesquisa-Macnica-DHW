@@ -1,5 +1,8 @@
+#include <ClosedCube_HDC1080.h>
+
 #ifndef DEFINITIONS
 #define DEFINITIONS
+
 
 /* DEFINIÇÕES DOS PINOS */
 #define POTENCIOMETER       3
@@ -8,7 +11,7 @@
 #define SENSOR_ACCELOMETER  2
 
 
-
+ClosedCube_HDC1080 hdc1080;
 
 
 
